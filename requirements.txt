@@ -1,0 +1,7 @@
+streamlit
+pytesseract
+Pillow
+python-dotenv
+langchain-community
+langchain-core
+

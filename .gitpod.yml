@@ -1,0 +1,19 @@
+# Gitpod automation for Python Document Parser
+image: gitpod/workspace-python
+
+tasks:
+  - name: Setup System and Python Environment
+    init: |
+      # Install Tesseract OCR engine on the Linux machine
+      sudo apt-get update
+      sudo apt-get install -y tesseract-ocr
+      # Install Python dependencies
+      pip install -r requirements.txt
+    command: |
+      # Run the Streamlit app
+      streamlit run app.py --server.port 8080 --server.address 0.0.0.0
+
+ports:
+  - port: 8080
+    onOpen: open-preview
+    visibility: public

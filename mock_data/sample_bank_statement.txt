@@ -1,0 +1,24 @@
+Mock Bank Statement - For Demo Only
+===================================
+
+Bank: Demo Bank Ltd.
+Branch: Main City Branch
+
+Account Holder: John Doe
+Account Number: 1234567890
+IFSC: DEMO0000123
+
+Statement Period: 01/01/2024 - 31/01/2024
+
+Date       Description                 Amount      Balance
+---------------------------------------------------------
+01/01/24   Salary Credit             +50,000.00   50,000.00
+05/01/24   ATM Withdrawal             -5,000.00   45,000.00
+10/01/24   Online Purchase           -2,000.00   43,000.00
+18/01/24   UPI Transfer              -1,500.00   41,500.00
+25/01/24   Interest Credit              +50.00   41,550.00
+
+Note:
+- This is a dummy statement used only for testing the Intelligent Document Parser & Validator MVP.
+- The validator compares the `Account Holder` name with the name detected in the uploaded ID document.
+
