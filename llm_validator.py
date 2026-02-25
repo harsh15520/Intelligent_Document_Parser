@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from typing import Dict, Any
 
 from langchain_core.runnables import RunnableLambda
@@ -15,15 +16,16 @@ def _extract_name_from_text(text: str) -> str | None:
     if not text:
         return None
 
-    lowered = text.lower()
-    for line in lowered.splitlines():
-        line_stripped = line.strip()
-        if line_stripped.startswith("name:"):
-            # Original case is not preserved here, but for comparison
-            # we only need a normalized value.
-            return line_stripped.replace("name:", "", 1).strip()
-        if line_stripped.startswith("account holder:"):
-            return line_stripped.replace("account holder:", "", 1).strip()
+    # Using re.search with re.IGNORECASE avoids creating large intermediate string copies.
+    # We look for "name:" or "account holder:" at the start of a line.
+    match = re.search(
+        r"^\s*(?:name|account holder):\s*(.*?)\s*$",
+        text,
+        re.IGNORECASE | re.MULTILINE
+    )
+    if match:
+        # Original implementation returned a lowercased value.
+        return match.group(1).lower()
 
     return None
 
